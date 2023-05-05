@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Reflection;
 using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
+using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
 using Nautilus.Utility;
-using UnityEngine;
 using static CraftData;
+using Sprite = Atlas.Sprite;
 
 namespace DRS.ModulesMod
 {
@@ -29,7 +30,7 @@ namespace DRS.ModulesMod
         /// <param name="FileOrTechType"><see cref="TechType"/> or <see cref="string"/>.</param>
         /// <returns><see cref="TechType"/> returns the sprite of an existing TechType. A <see cref="string"/> returns a sprite loaded from the Assets folder with the same name.</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static Atlas.Sprite GetSprite(object FileOrTechType)
+        public static Sprite GetSprite(object FileOrTechType)
         {
             if(FileOrTechType is TechType techType) return SpriteManager.Get(techType);
             else if(FileOrTechType is string filename) return ImageUtils.LoadSpriteFromFile(IOUtilities.Combine(Assembly.GetExecutingAssembly().Location, "Assets", filename + ".png"));
@@ -84,27 +85,38 @@ namespace DRS.ModulesMod
         /// <param name="unlocksWith"><see cref="TechType"/> for this item to unlock with.</param>
         /// <param name="recipe"><see cref="RecipeData"/> for this items recipe.</param>
         /// <returns>A <see cref="CustomPrefab"/>.</returns>
-        public static CustomPrefab CreatePrefab(int moduleType, PrefabInfo prefabInfo, TechType unlocksWith, RecipeData recipe)
+        public static CustomPrefab CreatePrefab(int moduleType, PrefabInfo prefabInfo, RecipeData recipe)
         {
-            CustomPrefab prefab = new CustomPrefab(prefabInfo);
-            prefab.SetUnlock(unlocksWith);
-            switch(moduleType)
+            var prefab = new CustomPrefab(prefabInfo);
+            var clone = new CloneTemplate(prefabInfo, TechType.CyclopsHullModule1);
+            //prefab.SetUnlock(unlocksWith);
+            switch (moduleType)
             {
                 case 1: // Seamoth
+                    clone.ModifyPrefab += obj =>
+                    {
+                        //obj.EnsureComponent<SeamothHandler>();
+                    };
                     prefab.SetEquipment(EquipmentType.SeamothModule);
                     prefab.SetRecipe(recipe)
                         .WithFabricatorType(CraftTree.Type.Workbench)
                         .WithStepsToFabricatorTab(SeamothSteps);
                     break;
-
                 case 2: // Exosuit
+                    clone.ModifyPrefab += obj =>
+                    {
+                        //obj.EnsureComponent<ExosuitHandler>();
+                    };
                     prefab.SetEquipment(EquipmentType.ExosuitModule);
                     prefab.SetRecipe(recipe)
                         .WithFabricatorType(CraftTree.Type.Workbench)
                         .WithStepsToFabricatorTab(ExosuitSteps);
                     break;
-
                 case 3: // Cyclops
+                    clone.ModifyPrefab += obj =>
+                    {
+                        //obj.EnsureComponent<CyclopsHandler>();
+                    };
                     prefab.SetEquipment(EquipmentType.CyclopsModule);
                     prefab.SetRecipe(recipe)
                         .WithFabricatorType(CraftTree.Type.Workbench)
