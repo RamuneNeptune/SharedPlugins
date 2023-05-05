@@ -68,7 +68,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Items\" />
+    <Folder Include="Cyclops\" />
+    <Folder Include="Exosuit\" />
+    <Folder Include="Seamoth\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
