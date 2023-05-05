@@ -7,6 +7,7 @@ using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
 using Nautilus.Utility;
+using DRS.ModulesMod.Handlers;
 using static CraftData;
 using Sprite = Atlas.Sprite;
 
@@ -14,6 +15,7 @@ namespace DRS.ModulesMod
 {
     public static class Helpers
     {
+        public static string[] GeneralSteps = { "Modules", "General" };
         public static string[] SeamothSteps = { "Modules", "Seamoth" };
         public static string[] ExosuitSteps = { "Modules", "Exosuit" };
         public static string[] CyclopsSteps = { "Modules", "Cyclops" };
@@ -22,7 +24,9 @@ namespace DRS.ModulesMod
         {
             Exosuit,
             Seamoth,
-            Cyclops
+            Cyclops,
+            General,
+            SeamothExosuit
         }
 
         /// <summary>
@@ -99,7 +103,7 @@ namespace DRS.ModulesMod
                 case ModuleType.Seamoth: // Seamoth
                     clone.ModifyPrefab += obj =>
                     {
-                        //obj.EnsureComponent<SeamothHandler>();
+                        obj.EnsureComponent<SeamothHandler>();
                     };
                     prefab.SetEquipment(EquipmentType.SeamothModule);
                     prefab.SetRecipe(recipe)
@@ -109,7 +113,7 @@ namespace DRS.ModulesMod
                 case ModuleType.Exosuit: // Exosuit
                     clone.ModifyPrefab += obj =>
                     {
-                        //obj.EnsureComponent<ExosuitHandler>();
+                        obj.EnsureComponent<ExosuitHandler>();
                     };
                     prefab.SetEquipment(EquipmentType.ExosuitModule);
                     prefab.SetRecipe(recipe)
@@ -119,14 +123,25 @@ namespace DRS.ModulesMod
                 case ModuleType.Cyclops: // Cyclops
                     clone.ModifyPrefab += obj =>
                     {
-                        //obj.EnsureComponent<CyclopsHandler>();
+                        obj.EnsureComponent<CyclopsHandler>();
                     };
                     prefab.SetEquipment(EquipmentType.CyclopsModule);
                     prefab.SetRecipe(recipe)
                         .WithFabricatorType(CraftTree.Type.Workbench)
                         .WithStepsToFabricatorTab(CyclopsSteps);
                     break;
+                case ModuleType.General:
+                    clone.ModifyPrefab += obj =>
+                    {
+                        //Check for a general handler or check what vehicle is.
+                    };
+                    prefab.SetEquipment(EquipmentType.VehicleModule);
+                    prefab.SetRecipe(recipe)
+                        .WithFabricatorType(CraftTree.Type.Workbench)
+                        .WithStepsToFabricatorTab(GeneralSteps);
+                    break;
             }
+            prefab.SetGameObject(clone);
             return prefab;
         }
     }
