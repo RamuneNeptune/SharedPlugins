@@ -17,8 +17,6 @@ namespace DRS.ModulesMod
         public static string[] SeamothSteps = { "Modules", "Seamoth" };
         public static string[] ExosuitSteps = { "Modules", "Exosuit" };
         public static string[] CyclopsSteps = { "Modules", "Cyclops" };
-        public static Vector2int size = new Vector2int(1, 1);
-
 
         /// <summary>
         /// Gets a sprite from a <see cref="TechType"/>, or from the Assets folder
@@ -71,8 +69,7 @@ namespace DRS.ModulesMod
         {
             PrefabInfo prefabInfo = PrefabInfo
                 .WithTechType(id, name, description)
-                .WithIcon(sprite)
-                .WithSizeInInventory(size);
+                .WithIcon(sprite);
             return prefabInfo;
         }
 
