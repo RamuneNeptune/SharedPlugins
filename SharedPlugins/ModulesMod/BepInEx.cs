@@ -20,6 +20,6 @@ namespace DRS.ModulesMod
             harmony.PatchAll();
             Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded");
             logger = Logger;
-        }
+        } 
     }
 }
