@@ -17,9 +17,6 @@ namespace DRS.ModulesMod
         public static string[] ExosuitSteps = { "Modules", "Exosuit" };
         public static string[] CyclopsSteps = { "Modules", "Cyclops" };
         public static Vector2int size = new Vector2int(1, 1);
-        public static int SeamothID = 1;
-        public static int ExosuitID = 2;
-        public static int CyclopsID = 3;
 
 
         /// <summary>
@@ -36,7 +33,7 @@ namespace DRS.ModulesMod
         {
             if(FileOrTechType is TechType techType) return SpriteManager.Get(techType);
             else if(FileOrTechType is string filename) return ImageUtils.LoadSpriteFromFile(IOUtilities.Combine(Assembly.GetExecutingAssembly().Location, "Assets", filename + ".png"));
-            else throw new ArgumentException("Incorrect type used in Helpers.GetSprite()");
+            else throw new ArgumentException("Incorrect type used in 'Helpers.GetSprite();'");
         }
 
 
@@ -64,10 +61,10 @@ namespace DRS.ModulesMod
         /// <summary> 
         /// Creates and returns a <see cref="PrefabInfo"/>.
         /// </summary>
-        /// <param name="id">TechType ID for the item to use</param>
+        /// <param name="id">ID for the item TechType to use</param>
         /// <param name="name">Display name for the item to use</param>
         /// <param name="description">Description for the item to use</param>
-        /// <param name="sprite">Sprite for the item to use</param>
+        /// <param name="sprite"><see cref="Atlas.Sprite"/> for the item to use</param>
         /// <returns>A <see cref="PrefabInfo"/>.</returns>
         public static PrefabInfo CreatePrefabInfo(string id, string name, string description, Sprite sprite)
         {
@@ -82,10 +79,10 @@ namespace DRS.ModulesMod
         /// <summary>
         /// Creates and returns a <see cref="CustomPrefab"/>.
         /// </summary>
-        /// <param name="moduleType">1 = Seamoth, 2 = Exosuit, 3 = Cyclops</param>
-        /// <param name="prefabInfo">PrefabInfo for this items TechType information & sprite.</param>
-        /// <param name="unlocksWith">TechType for this item to unlock with.</param>
-        /// <param name="recipe">RecipeData for this items recipe.</param>
+        /// <param name="moduleType"><see cref="int"/> to use for module type, 1 = Seamoth, 2 = Exosuit, 3 = Cyclops.</param>
+        /// <param name="prefabInfo"><see cref="PrefabInfo"/> for this items TechType information & sprite.</param>
+        /// <param name="unlocksWith"><see cref="TechType"/> for this item to unlock with.</param>
+        /// <param name="recipe"><see cref="RecipeData"/> for this items recipe.</param>
         /// <returns>A <see cref="CustomPrefab"/>.</returns>
         public static CustomPrefab CreatePrefab(int moduleType, PrefabInfo prefabInfo, TechType unlocksWith, RecipeData recipe)
         {
