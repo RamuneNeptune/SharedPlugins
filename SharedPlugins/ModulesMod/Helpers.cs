@@ -18,6 +18,13 @@ namespace DRS.ModulesMod
         public static string[] ExosuitSteps = { "Modules", "Exosuit" };
         public static string[] CyclopsSteps = { "Modules", "Cyclops" };
 
+        public enum ModuleType
+        {
+            Exosuit,
+            Seamoth,
+            Cyclops
+        }
+
         /// <summary>
         /// Gets a sprite from a <see cref="TechType"/>, or from the Assets folder
         /// </summary>
@@ -82,14 +89,14 @@ namespace DRS.ModulesMod
         /// <param name="unlocksWith"><see cref="TechType"/> for this item to unlock with.</param>
         /// <param name="recipe"><see cref="RecipeData"/> for this items recipe.</param>
         /// <returns>A <see cref="CustomPrefab"/>.</returns>
-        public static CustomPrefab CreatePrefab(int moduleType, PrefabInfo prefabInfo, RecipeData recipe)
+        public static CustomPrefab CreatePrefab(ModuleType moduleType, PrefabInfo prefabInfo, RecipeData recipe)
         {
             var prefab = new CustomPrefab(prefabInfo);
             var clone = new CloneTemplate(prefabInfo, TechType.CyclopsHullModule1);
             //prefab.SetUnlock(unlocksWith);
             switch (moduleType)
             {
-                case 1: // Seamoth
+                case ModuleType.Seamoth: // Seamoth
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<SeamothHandler>();
@@ -99,7 +106,7 @@ namespace DRS.ModulesMod
                         .WithFabricatorType(CraftTree.Type.Workbench)
                         .WithStepsToFabricatorTab(SeamothSteps);
                     break;
-                case 2: // Exosuit
+                case ModuleType.Exosuit: // Exosuit
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<ExosuitHandler>();
@@ -109,7 +116,7 @@ namespace DRS.ModulesMod
                         .WithFabricatorType(CraftTree.Type.Workbench)
                         .WithStepsToFabricatorTab(ExosuitSteps);
                     break;
-                case 3: // Cyclops
+                case ModuleType.Cyclops: // Cyclops
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<CyclopsHandler>();
