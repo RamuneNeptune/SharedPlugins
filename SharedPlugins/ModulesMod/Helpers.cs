@@ -131,7 +131,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.SeamothModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(Fabricator.TreeType)
+                        .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(SeamothSteps);
                     break;
                 case ModuleType.Exosuit: // Exosuit
@@ -141,7 +141,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.ExosuitModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(Fabricator.TreeType)
+                        .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(ExosuitSteps);
                     break;
                 case ModuleType.Cyclops: // Cyclops
@@ -151,7 +151,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.CyclopsModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(Fabricator.TreeType)
+                        .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(CyclopsSteps);
                     break;
                 case ModuleType.General:
@@ -161,21 +161,12 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.VehicleModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(Fabricator.TreeType)
+                        .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(GeneralSteps);
                     break;
             }
             prefab.SetGameObject(clone);
             return prefab;
-        }
-
-        public static bool ModuleExist(TechType techType, Vehicle vehicle)
-        {
-            if (vehicle.modules.GetCount(techType) > 0)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }
