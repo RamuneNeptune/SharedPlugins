@@ -9,15 +9,20 @@ namespace DRS.ModulesMod.Handlers
 {
     public class SeamothHandler : MonoBehaviour
     {
-        public static List<GameObject> seamoths = new List<GameObject>();
         public SeaMoth seamoth;
-
-        public void OnEnable() => seamoths.Add(gameObject);
-        public void OnDisable() => seamoths.Remove(gameObject);
-
+        public Animator animator;
+        public Vehicle vehicle;
+        
         public void Start()
         {
             seamoth = gameObject.GetComponentInChildren<SeaMoth>();
+            animator = gameObject.GetComponent<Animator>();
+            vehicle = gameObject.GetComponent<Vehicle>();
+        }
+
+        public void SetLastValues()
+        {
+
         }
     }
 }
