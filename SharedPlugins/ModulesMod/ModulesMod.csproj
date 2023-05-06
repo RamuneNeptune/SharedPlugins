@@ -349,12 +349,14 @@
     <Compile Include="Handlers\SeamothHandler.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Modules\Seamoth\EngineOvercharge.cs" />
+    <Compile Include="Patches\ExusuitAwake.cs" />
+    <Compile Include="Patches\SeamothAwake.cs" />
+    <Compile Include="Patches\SubRootAwake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Cyclops\" />
     <Folder Include="Modules\Exosuit\" />
-    <Folder Include="Patches\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
