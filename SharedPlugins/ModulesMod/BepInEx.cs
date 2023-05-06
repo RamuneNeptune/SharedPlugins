@@ -20,21 +20,19 @@ namespace DRS.ModulesMod
         public void Awake()
         {
             harmony.PatchAll();
-            PatchModules();
 
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "DSRModules", "Modules", Helpers.GetSprite(TechType.Peeper));
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "General", "General", Helpers.GetSprite(TechType.Peeper), "DSRModules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Peeper), "DSRModules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Peeper), "DSRModules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Peeper), "DSRModules");
+            // Fix Nodes
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Modules", "Modules", Helpers.GetSprite(TechType.Peeper));
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "General", "General", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" }); // Only "Modules" because AddTabNode() inserts a noe INSIDE the Modules node. Basically the last argument its not the path to the node, but the path that the noe will be inserted on.
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
+
+            EngineOvercharge.Patch();
+
 
             Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded");
             logger = Logger;
-        }
-
-        public void PatchModules()
-        {
-            EngineOvercharge.Patch();
         }
     }
 }
