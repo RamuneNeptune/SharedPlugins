@@ -22,24 +22,11 @@ namespace DRS.ModulesMod
         {
             harmony.PatchAll();
 
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "LithiumIonBattery");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "HeatBlade");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "PlasteelTank");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "HighCapacityTank");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "UltraGlideFins");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SwimChargeFins");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "RepulsionCannon");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "CyclopsHullModule2");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "CyclopsHullModule3");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SeamothHullModule2");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SeamothHullModule3");
-            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "ExoHullModule2");
-
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Modules", "Modules", Helpers.GetSprite(TechType.Constructor));
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "General", "General", Helpers.GetSprite(TechType.Constructor), "Modules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Seamoth), "Modules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
+            Fabricator.Patch();
+            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "General", "General", Helpers.GetSprite(TechType.Constructor), "Modules");
+            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Seamoth), "Modules");
+            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
+            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
 
             Modules.All.EngineOvercharge.Patch();
             Modules.All.TorpedoAccelerator.Patch();
@@ -49,7 +36,7 @@ namespace DRS.ModulesMod
             Modules.Cyclops.SonarRange.Patch();
             Modules.Exosuit.JumpJet.Patch();
             Modules.Seamoth.Example.Patch();
-
+            
             Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded");
             logger = Logger;
         }

@@ -18,12 +18,12 @@ namespace DRS.ModulesMod
 {
     public static class Helpers
     {
-        public static string[] GeneralSteps = { "Modules", "General" };
-        public static string[] SeamothSteps = { "Modules", "Seamoth" };
-        public static string[] ExosuitSteps = { "Modules", "Exosuit" };
-        public static string[] CyclopsSteps = { "Modules", "Cyclops" };
-
         public static readonly Dictionary<ModuleType, List<TechType>> modulesRefrences = new Dictionary<ModuleType, List<TechType>>();
+
+        public static string[] GeneralSteps = { "General" };
+        public static string[] SeamothSteps = { "Seamoth" };
+        public static string[] ExosuitSteps = { "Exosuit" };
+        public static string[] CyclopsSteps = { "Cyclops" };
 
         public enum ModuleType
         {
@@ -31,7 +31,6 @@ namespace DRS.ModulesMod
             Seamoth,
             Cyclops,
             General,
-            SeamothExosuit
         }
 
 
@@ -132,7 +131,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.SeamothModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(CraftTree.Type.Workbench)
+                        .WithFabricatorType(Fabricator.TreeType)
                         .WithStepsToFabricatorTab(SeamothSteps);
                     break;
                 case ModuleType.Exosuit: // Exosuit
@@ -142,7 +141,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.ExosuitModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(CraftTree.Type.Workbench)
+                        .WithFabricatorType(Fabricator.TreeType)
                         .WithStepsToFabricatorTab(ExosuitSteps);
                     break;
                 case ModuleType.Cyclops: // Cyclops
@@ -152,7 +151,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.CyclopsModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(CraftTree.Type.Workbench)
+                        .WithFabricatorType(Fabricator.TreeType)
                         .WithStepsToFabricatorTab(CyclopsSteps);
                     break;
                 case ModuleType.General:
@@ -162,7 +161,7 @@ namespace DRS.ModulesMod
                     };
                     prefab.SetEquipment(EquipmentType.VehicleModule);
                     prefab.SetRecipe(recipe)
-                        .WithFabricatorType(CraftTree.Type.Workbench)
+                        .WithFabricatorType(Fabricator.TreeType)
                         .WithStepsToFabricatorTab(GeneralSteps);
                     break;
             }

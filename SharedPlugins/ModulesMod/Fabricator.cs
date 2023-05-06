@@ -13,6 +13,8 @@ namespace DRS.ModulesMod
 {
     public static class Fabricator
     {
+        public static CraftTree.Type TreeType;
+
         public static void Patch()
         {
             var info = Helpers.CreatePrefabInfo("ModuleStation", "Module station", "A crafting station for modules.", Helpers.GetSprite(TechType.Fabricator));
@@ -23,15 +25,17 @@ namespace DRS.ModulesMod
             var model = new FabricatorTemplate(prefab.Info, treeType)
             {
                 FabricatorModel = FabricatorTemplate.Model.MoonPool,
-                ModifyPrefab = obj => obj.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = tex
             };
+            model.ModifyPrefab += obj => { obj.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = tex; };
+
+            TreeType = treeType;
 
             prefab.SetGameObject(model);
             prefab.SetPdaGroupCategory(TechGroup.InteriorModules, TechCategory.InteriorModule);
             prefab.SetRecipe(Helpers.CreateRecipe(0,
                 new Ingredient(TechType.Silver, 1),
                 new Ingredient(TechType.Gold, 1)));
-
+            
             prefab.Register();
         }
     }
