@@ -22,11 +22,11 @@ namespace DRS.ModulesMod
         {
             harmony.PatchAll();
 
-            Fabricator.Patch();
-            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "General", "General", Helpers.GetSprite(TechType.Constructor), "Modules");
-            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Seamoth), "Modules");
-            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
-            CraftTreeHandler.AddTabNode(Fabricator.TreeType, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
+            ModuleStation.Patch();
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "General", "General", Helpers.GetSprite(TechType.Constructor), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Seamoth), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
 
             Modules.All.EngineOvercharge.Patch();
             Modules.All.TorpedoAccelerator.Patch();
