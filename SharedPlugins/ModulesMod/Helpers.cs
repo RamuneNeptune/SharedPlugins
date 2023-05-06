@@ -20,6 +20,8 @@ namespace DRS.ModulesMod
         public static string[] ExosuitSteps = { "DsrModules", "Exosuit" };
         public static string[] CyclopsSteps = { "DsrModules", "Cyclops" };
 
+        public static readonly Dictionary<ModuleType, List<TechType>> modulesRefrences = new Dictionary<ModuleType, List<TechType>>();
+
         public enum ModuleType
         {
             Exosuit,
@@ -27,6 +29,14 @@ namespace DRS.ModulesMod
             Cyclops,
             General,
             SeamothExosuit
+        }
+
+        public static void AddTechTypeToModuleType(ModuleType moduleType, TechType techType) 
+        {
+            if (!modulesRefrences[moduleType].Contains(techType))
+            {
+                modulesRefrences[moduleType].Add(techType);
+            }
         }
 
         /// <summary>
@@ -143,6 +153,15 @@ namespace DRS.ModulesMod
             }
             prefab.SetGameObject(clone);
             return prefab;
+        }
+
+        public static bool ModuleExist(TechType techType, Vehicle vehicle)
+        {
+            if (vehicle.modules.GetCount(techType) > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

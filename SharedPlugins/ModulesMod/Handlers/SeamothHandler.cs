@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DRS.ModulesMod.Modules.Seamoth;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace DRS.ModulesMod.Handlers
         public Animator animator;
         public Vehicle vehicle;
         public SeaMoth seamoth;
+
+        public bool hasEngineOverchargeModules;
 
         public void Start()
         {
@@ -43,9 +46,18 @@ namespace DRS.ModulesMod.Handlers
             lastVehicleValues[5] = animator.speed;
         }
 
+        public void GetModules()
+        {
+            hasEngineOverchargeModules = seamoth.modules.GetCount(EngineOvercharge.Info.TechType) > 0;
+        }
+
         public void Update()
         {
+            GetModules();
+            if (hasEngineOverchargeModules)
+            {
 
+            }
         }
     }
 }
