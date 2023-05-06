@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.Cyclops
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("CyclopsSonarModuleMK1", "Cyclops sonar module MK1", "An upgrade to the Cyclops sonar systems.\n\nCyclops compatible", Helpers.GetSprite(TechType.CyclopsSonarModule));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.Cyclops, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.Cyclops, info, recipe);
 
             prefab.Register();
         }

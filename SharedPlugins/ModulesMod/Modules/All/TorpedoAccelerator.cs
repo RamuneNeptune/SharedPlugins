@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.All
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("TorpedoAcceleratorModule", "Torpedo accelerator module", "Increases damage and firing rate of torpedo system bay or torpedo arm.\n\nSeamoth and Prawn Suit compatible", Helpers.GetSprite(TechType.SeamothTorpedoModule));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.General, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.General, info, recipe);
 
             prefab.Register();
         }

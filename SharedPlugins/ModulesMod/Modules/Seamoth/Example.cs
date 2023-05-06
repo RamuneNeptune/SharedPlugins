@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.Seamoth
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("Example", "Example seamoth module", "An advanced upgrade to the Seamoth torpedo systems.\n\nSeamoth compatible", Helpers.GetSprite(TechType.SeamothElectricalDefense));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.Seamoth, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.Seamoth, info, recipe);
 
             prefab.Register();
         }

@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.Exosuit
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("ExosuitJetUpgradeModuleMK1", "Prawn suit jet upgrade MK1", "An advanced upgrade to the Prawn suit jets.\n\nExosuit compatible", Helpers.GetSprite(TechType.ExosuitJetUpgradeModule));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.Exosuit, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.Exosuit, info, recipe);
 
             prefab.Register();
         }

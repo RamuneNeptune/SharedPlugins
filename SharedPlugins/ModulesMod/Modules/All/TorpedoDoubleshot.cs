@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.All
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("TorpedoDoubleshotModule", "Torpedo doubleshot module", "Adds a doubleshot functionality to the torpedo bay or torpedo arm, allowing two projectiles to be launched at once.\n\nSeamoth and Prawn Suit compatible", Helpers.GetSprite(TechType.SeamothTorpedoModule));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.General, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.General, info, recipe);
 
             prefab.Register();
         }

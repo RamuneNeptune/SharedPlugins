@@ -16,7 +16,7 @@ namespace DRS.ModulesMod.Modules.All
                 new Ingredient(TechType.Magnetite, 1));
 
             info = Helpers.CreatePrefabInfo("EngineOverchargeModule", "Engine overcharge module", "Temporarily overcharge vehicle engine providing a temporary speed boost at the cost of more energy usage.\n\nSeamoth, Prawn Suit, and Cyclops compatible", Helpers.GetSprite(TechType.PowerUpgradeModule));
-            var prefab = Helpers.CreatePrefab(Helpers.ModuleType.General, info, recipe);
+            var prefab = Helpers.CreatePrefab(Helpers.VehicleType.General, info, recipe);
 
             prefab.Register();
         }
