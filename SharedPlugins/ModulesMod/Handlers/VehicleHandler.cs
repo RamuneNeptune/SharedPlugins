@@ -10,7 +10,7 @@ namespace DRS.ModulesMod.Handlers
 
         public virtual void Awake()
         {
-            vehicle = GetComponentInParent<Vehicle>();
+            vehicle = GetComponentInChildren<Vehicle>();
 
             vehicle.modules.onEquip += (slot, item) => 
             {

@@ -2,56 +2,30 @@
 
 namespace DRS.ModulesMod.Handlers
 {
-    public class SeamothHandler : MonoBehaviour
+    public class SeamothHandler : VehicleHandler
     {
-        public object[] lastVehicleValues;
         public EngineRpmSFXManager engine;
         public EnergyMixin energyMixin;
         public Animator animator;
-        public Vehicle vehicle;
-        public SeaMoth seamoth;
 
-        public Misc.Modules modules;
+        public SeaMoth seamoth;
+        public SeaMoth lastSeamothValues;
 
         public void Start()
         {
             engine = gameObject.GetComponentInChildren<EngineRpmSFXManager>();
-            seamoth = gameObject.GetComponentInChildren<SeaMoth>();
             animator = gameObject.GetComponentInChildren<Animator>();
-            vehicle = gameObject.GetComponentInParent<Vehicle>();
-
-            modules = new Misc.Modules(seamoth);
-            modules.ModuleEquipped += OnModuleEquipped;
-            modules.ModuleUnequipped += OnModuleUnequipped;
-
-            lastVehicleValues = new object[] 
-            {
-                vehicle.forwardForce,
-                vehicle.backwardForce,
-                vehicle.sidewardForce,
-                seamoth.enginePowerConsumption,
-                engine.engineRpmSFX,
-                animator.speed,
-            };
+            seamoth = vehicle as SeaMoth;
         }
 
-        public void OnModuleEquipped(TechType techType, int count)
+        public override void OnModuleEquip(TechType techType, int count)
         {
-
+            base.OnModuleEquip(techType, count);
         }
 
-        public void OnModuleUnequipped(TechType techType, int count)
+        public override void OnModuleToggle(TechType techType, int slotID, bool state)
         {
-
-        }
-
-        public void SetLastValues()
-        {
-            lastVehicleValues[0] = vehicle.forwardForce;
-            lastVehicleValues[1] = vehicle.backwardForce;
-            lastVehicleValues[2] = vehicle.sidewardForce;
-            lastVehicleValues[3] = seamoth.enginePowerConsumption;
-            lastVehicleValues[5] = animator.speed;
+            base.OnModuleToggle(techType, slotID, state);
         }
     }
 }
