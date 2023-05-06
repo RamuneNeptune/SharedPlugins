@@ -10,15 +10,18 @@ using Nautilus.Utility;
 using DRS.ModulesMod.Handlers;
 using static CraftData;
 using Sprite = Atlas.Sprite;
+using DRS.ModulesMod.Modules.Seamoth;
+using UnityEngine;
+using System.IO;
 
 namespace DRS.ModulesMod
 {
     public static class Helpers
     {
-        public static string[] GeneralSteps = { "DsrModules", "General" };
-        public static string[] SeamothSteps = { "DsrModules" };
-        public static string[] ExosuitSteps = { "DsrModules", "Exosuit" };
-        public static string[] CyclopsSteps = { "DsrModules", "Cyclops" };
+        public static string[] GeneralSteps = { "Modules", "General" };
+        public static string[] SeamothSteps = { "Modules", "Seamoth" };
+        public static string[] ExosuitSteps = { "Modules", "Exosuit" };
+        public static string[] CyclopsSteps = { "Modules", "Cyclops" };
 
         public static readonly Dictionary<ModuleType, List<TechType>> modulesRefrences = new Dictionary<ModuleType, List<TechType>>();
 
@@ -31,13 +34,20 @@ namespace DRS.ModulesMod
             SeamothExosuit
         }
 
-        public static void AddTechTypeToModuleType(ModuleType moduleType, TechType techType) 
+
+        public static void SetModuleType(ModuleType moduleType, TechType techType) 
         {
-            if (!modulesRefrences[moduleType].Contains(techType))
-            {
+            if(!modulesRefrences[moduleType].Contains(techType))
                 modulesRefrences[moduleType].Add(techType);
-            }
         }
+
+
+        public static bool HasModule(Vehicle vehicle, TechType module)
+        {
+            if (vehicle.modules.GetCount(module) > 0) return true;
+            return false;
+        }
+
 
         /// <summary>
         /// Gets a sprite from a <see cref="TechType"/>, or from the Assets folder
@@ -52,8 +62,13 @@ namespace DRS.ModulesMod
         public static Sprite GetSprite(object FileOrTechType)
         {
             if(FileOrTechType is TechType techType) return SpriteManager.Get(techType);
-            else if(FileOrTechType is string filename) return ImageUtils.LoadSpriteFromFile(IOUtilities.Combine(Assembly.GetExecutingAssembly().Location, "Assets", filename + ".png"));
+            else if(FileOrTechType is string filename) return ImageUtils.LoadSpriteFromFile(IOUtilities.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", filename + ".png"));
             else throw new ArgumentException("Incorrect type used in 'Helpers.GetSprite();'");
+        }
+
+        public static Texture2D GetTexutre(string filename)
+        {
+            return ImageUtils.LoadTextureFromFile(IOUtilities.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Assets", filename + ".png"));
         }
 
 

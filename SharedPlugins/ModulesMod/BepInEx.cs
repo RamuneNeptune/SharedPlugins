@@ -2,8 +2,9 @@
 using BepInEx.Logging;
 using BepInEx;
 using HarmonyLib;
-using DRS.ModulesMod.Modules.Seamoth;
 using Nautilus.Handlers;
+using Modules = DRS.ModulesMod.Modules;
+using System.Linq;
 
 namespace DRS.ModulesMod
 {
@@ -21,15 +22,33 @@ namespace DRS.ModulesMod
         {
             harmony.PatchAll();
 
-            // Fix Nodes
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Modules", "Modules", Helpers.GetSprite(TechType.Peeper));
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "General", "General", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" }); // Only "Modules" because AddTabNode() inserts a noe INSIDE the Modules node. Basically the last argument its not the path to the node, but the path that the noe will be inserted on.
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
-            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Peeper), new string[] { "Modules" });
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "LithiumIonBattery");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "HeatBlade");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "PlasteelTank");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "HighCapacityTank");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "UltraGlideFins");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SwimChargeFins");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "RepulsionCannon");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "CyclopsHullModule2");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "CyclopsHullModule3");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SeamothHullModule2");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "SeamothHullModule3");
+            CraftTreeHandler.RemoveNode(CraftTree.Type.Workbench, "ExoHullModule2");
 
-            EngineOvercharge.Patch();
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Modules", "Modules", Helpers.GetSprite(TechType.Constructor));
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "General", "General", Helpers.GetSprite(TechType.Constructor), "Modules");
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Seamoth", "Seamoth", Helpers.GetSprite(TechType.Seamoth), "Modules");
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
+            CraftTreeHandler.AddTabNode(CraftTree.Type.Workbench, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
 
+            Modules.All.EngineOvercharge.Patch();
+            Modules.All.TorpedoAccelerator.Patch();
+            Modules.All.TorpedoDoubleshot.Patch();
+            Modules.Cyclops.SonarMK1.Patch();
+            Modules.Cyclops.SonarMK2.Patch();
+            Modules.Cyclops.SonarRange.Patch();
+            Modules.Exosuit.JumpJet.Patch();
+            Modules.Seamoth.Example.Patch();
 
             Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded");
             logger = Logger;

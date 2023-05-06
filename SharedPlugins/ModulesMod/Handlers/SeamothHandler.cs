@@ -17,8 +17,6 @@ namespace DRS.ModulesMod.Handlers
         public Vehicle vehicle;
         public SeaMoth seamoth;
 
-        public bool hasEngineOverchargeModules;
-
         public void Start()
         {
             engine = gameObject.GetComponentInChildren<EngineRpmSFXManager>();
@@ -46,18 +44,9 @@ namespace DRS.ModulesMod.Handlers
             lastVehicleValues[5] = animator.speed;
         }
 
-        public void GetModules()
-        {
-            hasEngineOverchargeModules = seamoth.modules.GetCount(EngineOvercharge.Info.TechType) > 0;
-        }
-
         public void Update()
         {
-            GetModules();
-            if (hasEngineOverchargeModules)
-            {
 
-            }
         }
     }
 }

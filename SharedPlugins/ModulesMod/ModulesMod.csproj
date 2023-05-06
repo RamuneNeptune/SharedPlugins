@@ -344,28 +344,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BepInEx.cs" />
+    <Compile Include="Fabricator.cs" />
     <Compile Include="Handlers\CyclopsHandler.cs" />
     <Compile Include="Handlers\ExosuitHandler.cs" />
     <Compile Include="Handlers\SeamothHandler.cs" />
     <Compile Include="Helpers.cs" />
-    <Compile Include="Modules\Seamoth\EngineOvercharge.cs" />
+    <Compile Include="Misc\Modules.cs" />
+    <Compile Include="Modules\All\EngineOvercharge.cs" />
+    <Compile Include="Modules\All\TorpedoAccelerator.cs" />
+    <Compile Include="Modules\All\TorpedoDoubleshot.cs" />
+    <Compile Include="Modules\Cyclops\SonarMK1.cs" />
+    <Compile Include="Modules\Cyclops\SonarMK2.cs" />
+    <Compile Include="Modules\Cyclops\SonarRange.cs" />
+    <Compile Include="Modules\Exosuit\JumpJet.cs" />
+    <Compile Include="Modules\Seamoth\Example.cs" />
     <Compile Include="Patches\ExosuitAwake.cs" />
     <Compile Include="Patches\SeamothAwake.cs" />
     <Compile Include="Patches\SubRootAwake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Cyclops\" />
-    <Folder Include="Modules\Exosuit\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>mkdir "D:\SteamLibrary\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"
-copy /Y "$(TargetPath)" "D:\SteamLibrary\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"</PostBuildEvent>
+    <PostBuildEvent>mkdir "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"
+copy /Y "$(TargetPath)" "C:\Program Files (x86)\Steam\steamapps\common\Subnautica\BepInEx\plugins\$(TargetName)"</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

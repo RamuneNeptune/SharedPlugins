@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DRS.ModulesMod.Misc
 {
-    public class Modules
+    public static class Modules
     {
-        public TechType[] totalModules;
+        public static TechType[] totalModules;
+
     }
 }
