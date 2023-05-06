@@ -18,14 +18,14 @@ namespace DRS.ModulesMod
 {
     public static class Helpers
     {
-        public static readonly Dictionary<ModuleType, List<TechType>> modulesRefrences = new Dictionary<ModuleType, List<TechType>>();
+        public static readonly Dictionary<VehicleType, List<TechType>> modulesRefrences = new Dictionary<VehicleType, List<TechType>>();
 
         public static string[] GeneralSteps = { "General" };
         public static string[] SeamothSteps = { "Seamoth" };
         public static string[] ExosuitSteps = { "Exosuit" };
         public static string[] CyclopsSteps = { "Cyclops" };
 
-        public enum ModuleType
+        public enum VehicleType
         {
             Exosuit,
             Seamoth,
@@ -34,7 +34,7 @@ namespace DRS.ModulesMod
         }
 
 
-        public static void SetModuleType(ModuleType moduleType, TechType techType) 
+        public static void SetModuleType(VehicleType moduleType, TechType techType) 
         {
             if(!modulesRefrences[moduleType].Contains(techType))
                 modulesRefrences[moduleType].Add(techType);
@@ -117,14 +117,14 @@ namespace DRS.ModulesMod
         /// <param name="unlocksWith"><see cref="TechType"/> for this item to unlock with.</param>
         /// <param name="recipe"><see cref="RecipeData"/> for this items recipe.</param>
         /// <returns>A <see cref="CustomPrefab"/>.</returns>
-        public static CustomPrefab CreatePrefab(ModuleType moduleType, PrefabInfo prefabInfo, RecipeData recipe)
+        public static CustomPrefab CreatePrefab(VehicleType moduleType, PrefabInfo prefabInfo, RecipeData recipe)
         {
             var prefab = new CustomPrefab(prefabInfo);
             var clone = new CloneTemplate(prefabInfo, TechType.CyclopsHullModule1);
             //prefab.SetUnlock(unlocksWith);
             switch (moduleType)
             {
-                case ModuleType.Seamoth: // Seamoth
+                case VehicleType.Seamoth: // Seamoth
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
@@ -134,7 +134,7 @@ namespace DRS.ModulesMod
                         .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(SeamothSteps);
                     break;
-                case ModuleType.Exosuit: // Exosuit
+                case VehicleType.Exosuit: // Exosuit
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
@@ -144,7 +144,7 @@ namespace DRS.ModulesMod
                         .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(ExosuitSteps);
                     break;
-                case ModuleType.Cyclops: // Cyclops
+                case VehicleType.Cyclops: // Cyclops
                     clone.ModifyPrefab += obj =>
                     {
                         //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
@@ -154,7 +154,7 @@ namespace DRS.ModulesMod
                         .WithFabricatorType(ModuleStation.TreeType)
                         .WithStepsToFabricatorTab(CyclopsSteps);
                     break;
-                case ModuleType.General:
+                case VehicleType.General:
                     clone.ModifyPrefab += obj =>
                     {
                         //Check for a general handler or check what vehicle is.
