@@ -6,11 +6,9 @@ namespace DRS.ModulesMod.Patches
     [HarmonyPatch(typeof(SubRoot), nameof(SubRoot.Awake))]
     public class SubRootAwake
     {
-        [HarmonyPrefix]
-        public static void AwakePrefix(SubRoot __instance) 
+        public static void Prefix(SubRoot __instance) 
         {
-            if (__instance.isCyclops)
-                __instance.gameObject.EnsureComponent<CyclopsHandler>();
+            if(__instance.isCyclops) __instance.gameObject.EnsureComponent<CyclopsHandler>();
         }
     }
 }

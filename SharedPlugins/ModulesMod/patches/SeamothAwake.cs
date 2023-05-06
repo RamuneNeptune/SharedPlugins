@@ -6,8 +6,7 @@ namespace DRS.ModulesMod.Patches
     [HarmonyPatch(typeof(SeaMoth), nameof(SeaMoth.Awake))]
     public class SeamothAwake
     {
-        [HarmonyPrefix]
-        public static void AwakePrefix(SeaMoth __instance) 
+        public static void Prefix(SeaMoth __instance) 
         {
             __instance.gameObject.EnsureComponent<SeamothHandler>();
         }

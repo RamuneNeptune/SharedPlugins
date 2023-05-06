@@ -6,8 +6,7 @@ namespace DRS.ModulesMod.Patches
     [HarmonyPatch(typeof(Exosuit), nameof(Exosuit.Awake))]
     public class ExosuitAwake
     {
-        [HarmonyPrefix]
-        public static void AwakePrefix(Exosuit __instance) 
+        public static void Prefix(Exosuit __instance) 
         {
             __instance.gameObject.EnsureComponent<ExosuitHandler>();
         }
