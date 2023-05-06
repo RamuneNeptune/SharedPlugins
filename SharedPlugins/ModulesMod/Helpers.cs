@@ -15,10 +15,10 @@ namespace DRS.ModulesMod
 {
     public static class Helpers
     {
-        public static string[] GeneralSteps = { "Modules", "General" };
-        public static string[] SeamothSteps = { "Modules", "Seamoth" };
-        public static string[] ExosuitSteps = { "Modules", "Exosuit" };
-        public static string[] CyclopsSteps = { "Modules", "Cyclops" };
+        public static string[] GeneralSteps = { "DsrModules", "General" };
+        public static string[] SeamothSteps = { "DsrModules" };
+        public static string[] ExosuitSteps = { "DsrModules", "Exosuit" };
+        public static string[] CyclopsSteps = { "DsrModules", "Cyclops" };
 
         public enum ModuleType
         {
@@ -103,7 +103,7 @@ namespace DRS.ModulesMod
                 case ModuleType.Seamoth: // Seamoth
                     clone.ModifyPrefab += obj =>
                     {
-                        obj.EnsureComponent<SeamothHandler>();
+                        //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
                     };
                     prefab.SetEquipment(EquipmentType.SeamothModule);
                     prefab.SetRecipe(recipe)
@@ -113,7 +113,7 @@ namespace DRS.ModulesMod
                 case ModuleType.Exosuit: // Exosuit
                     clone.ModifyPrefab += obj =>
                     {
-                        obj.EnsureComponent<ExosuitHandler>();
+                        //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
                     };
                     prefab.SetEquipment(EquipmentType.ExosuitModule);
                     prefab.SetRecipe(recipe)
@@ -123,7 +123,7 @@ namespace DRS.ModulesMod
                 case ModuleType.Cyclops: // Cyclops
                     clone.ModifyPrefab += obj =>
                     {
-                        obj.EnsureComponent<CyclopsHandler>();
+                        //obj.EnsureComponent<NonPassiveModule>(); and set its parameters.
                     };
                     prefab.SetEquipment(EquipmentType.CyclopsModule);
                     prefab.SetRecipe(recipe)
