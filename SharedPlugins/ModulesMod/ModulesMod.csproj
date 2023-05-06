@@ -344,7 +344,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BepInEx.cs" />
-    <Compile Include="Fabricator.cs" />
+    <Compile Include="ModuleStation.cs" />
     <Compile Include="Handlers\CyclopsHandler.cs" />
     <Compile Include="Handlers\ExosuitHandler.cs" />
     <Compile Include="Handlers\SeamothHandler.cs" />

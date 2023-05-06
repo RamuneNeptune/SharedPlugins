@@ -11,7 +11,7 @@ using static CraftData;
 
 namespace DRS.ModulesMod
 {
-    public static class Fabricator
+    public static class ModuleStation
     {
         public static CraftTree.Type TreeType;
 
