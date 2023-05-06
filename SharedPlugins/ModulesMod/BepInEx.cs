@@ -28,6 +28,11 @@ namespace DRS.ModulesMod
             CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Exosuit", "Prawn suit", Helpers.GetSprite(TechType.Exosuit), "Modules");
             CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Cyclops", "Cyclops", Helpers.GetSprite(TechType.Cyclops), "Modules");
 
+            LanguageHandler.SetLanguageLine("11Menu_General", "General");
+            LanguageHandler.SetLanguageLine("11Menu_Seamoth", "Seamoth");
+            LanguageHandler.SetLanguageLine("11Menu_Exosuit", "Exosuit");
+            LanguageHandler.SetLanguageLine("11Menu_Cyclops", "Cyclops");
+
             Modules.All.EngineOvercharge.Patch();
             Modules.All.TorpedoAccelerator.Patch();
             Modules.All.TorpedoDoubleshot.Patch();
