@@ -4,7 +4,7 @@ using static CraftData;
 
 namespace DRS.ModulesMod.Modules.Cyclops
 {
-    public static class SonarMK2
+    public static class SonarMK1
     {
         public static PrefabInfo info;
 
