@@ -24,7 +24,7 @@ namespace DRS.ModulesMod
             Helpers.PatchFabricator();
             Helpers.PatchLanguageLines();
             Helpers.PatchModules();
-            Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded and initialized. DRS hope you enjoy.");
+            Logger.LogInfo(pluginName + " " + versionString + " " + "has breached the mainframe.. successfully loaded and initialized. We at DRS hope you enjoy.");
             logger = Logger;
         }
     }
