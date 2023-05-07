@@ -26,7 +26,7 @@ namespace DRS.ModulesMod.Testing
         }
 
         // maybe change to PrefabInfo instead of TechType?
-        public static Module CreateModule(TechType techType, Helpers.VehicleType vehicleType, Action OnEquip = null, Action OnUnequip = null, Action<bool> OnToggle = null)
+        public static Module CreateModule(Helpers.VehicleType vehicleType, TechType techType, Action OnEquip = null, Action OnUnequip = null, Action<bool> OnToggle = null)
         {
             Module module = new Module
             {
@@ -62,9 +62,9 @@ namespace DRS.ModulesMod.Testing
         /// <param name="onToggle">The action that will be execited each time the module is toggled.</param>
         public Module(Helpers.VehicleType vehicleType, TechType techType, Action onEquip = null, Action onUnequip = null, Action<bool> onToggle = null)
         {
-            this.techType = techType;
             this.vehicleType = vehicleType;
-
+            this.techType = techType;
+            
             OnEquip = onEquip;
             OnUnequip = onUnequip;
             OnToggle = onToggle;
