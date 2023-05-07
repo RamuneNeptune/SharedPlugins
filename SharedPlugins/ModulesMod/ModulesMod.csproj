@@ -359,8 +359,8 @@
     <Compile Include="Modules\All\EngineOvercharge.cs" />
     <Compile Include="Modules\All\TorpedoAccelerator.cs" />
     <Compile Include="Modules\All\TorpedoDoubleshot.cs" />
+    <Compile Include="Modules\Cyclops\SonarMK1.cs" />
     <Compile Include="Modules\Cyclops\SonarMK2.cs" />
-    <Compile Include="Modules\Cyclops\SonarMK3.cs" />
     <Compile Include="Modules\Cyclops\SonarRange.cs" />
     <Compile Include="Modules\Exosuit\JumpJet.cs" />
     <Compile Include="Modules\Seamoth\Example.cs" />
