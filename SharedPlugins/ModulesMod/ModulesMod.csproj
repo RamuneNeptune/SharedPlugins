@@ -362,10 +362,9 @@
     <Compile Include="Patches\SeamothAwake.cs" />
     <Compile Include="Patches\SubRootAwake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\VehicleHandlerExperimental.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Testing\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
