@@ -13,6 +13,7 @@ using Sprite = Atlas.Sprite;
 using DRS.ModulesMod.Modules.Seamoth;
 using UnityEngine;
 using System.IO;
+using Nautilus.Handlers;
 
 namespace DRS.ModulesMod
 {
@@ -167,6 +168,47 @@ namespace DRS.ModulesMod
             }
             prefab.SetGameObject(clone);
             return prefab;
+        }
+
+        /// <summary>
+        /// Intended to be ONE USE ONLY and only in BepInEx.cs
+        /// <para>Petition to make this kind of things internal</para>
+        /// </summary>
+        public static void PatchFabricator()
+        {
+            ModuleStation.Patch();
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "General", "General", GetSprite(TechType.Constructor), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Seamoth", "Seamoth", GetSprite(TechType.Seamoth), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Exosuit", "Prawn suit", GetSprite(TechType.Exosuit), "Modules");
+            CraftTreeHandler.AddTabNode(ModuleStation.TreeType, "Cyclops", "Cyclops", GetSprite(TechType.Cyclops), "Modules");
+        }
+
+        /// <summary>
+        /// Intended to be ONE USE ONLY and only in BepInEx.cs
+        /// <para>Petition to make this kind of things internal</para>
+        /// </summary>
+        public static void PatchLanguageLines()
+        {
+            LanguageHandler.SetLanguageLine("11Menu_General", "General");
+            LanguageHandler.SetLanguageLine("11Menu_Seamoth", "Seamoth");
+            LanguageHandler.SetLanguageLine("11Menu_Exosuit", "Exosuit");
+            LanguageHandler.SetLanguageLine("11Menu_Cyclops", "Cyclops");
+        }
+
+        /// <summary>
+        /// Intended to be ONE USE ONLY and only in BepInEx.cs
+        /// <para>Petition to make this kind of things internal</para>
+        /// </summary>
+        public static void PatchModules()
+        {
+            Modules.All.EngineOvercharge.Patch();
+            Modules.All.TorpedoAccelerator.Patch();
+            Modules.All.TorpedoDoubleshot.Patch();
+            Modules.Cyclops.SonarMK1.Patch();
+            Modules.Cyclops.SonarMK2.Patch();
+            Modules.Cyclops.SonarRange.Patch();
+            Modules.Exosuit.JumpJet.Patch();
+            Modules.Seamoth.Example.Patch();
         }
     }
 }
