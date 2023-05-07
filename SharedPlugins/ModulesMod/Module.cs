@@ -1,45 +1,7 @@
-﻿using Nautilus.Assets;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
-namespace DRS.ModulesMod.Testing
+namespace DRS.ModulesMod
 {
-    public class VehicleHandlerExperimental
-    {
-    }
-
-    public class ModuleHandler // Combine with Helpers
-    {
-        public static readonly Dictionary<Helpers.VehicleType, List<Module>> moduleTree = new Dictionary<Helpers.VehicleType, List<Module>>();
-
-        public static void AddModule(Module module)
-        {
-            if (!moduleTree[module.vehicleType].Contains(module))
-                moduleTree[module.vehicleType].Add(module);
-        }
-
-        public static Module GetModule(Helpers.VehicleType vehicleType, TechType techType)
-        {
-            foreach (var module in moduleTree[vehicleType])
-                if (module.techType == techType) return module;
-            return default;
-        }
-
-        // maybe change to PrefabInfo instead of TechType?
-        public static Module CreateModule(Helpers.VehicleType vehicleType, TechType techType, Action OnEquip = null, Action OnUnequip = null, Action<bool> OnToggle = null)
-        {
-            Module module = new Module
-            {
-                techType = techType,
-                vehicleType = vehicleType,
-                OnEquip = OnEquip,
-                OnUnequip = OnUnequip,
-                OnToggle = OnToggle
-            };
-            return module;
-        } 
-    }
-
     public struct Module
     {
         public TechType techType;
@@ -64,7 +26,7 @@ namespace DRS.ModulesMod.Testing
         {
             this.vehicleType = vehicleType;
             this.techType = techType;
-            
+
             OnEquip = onEquip;
             OnUnequip = onUnequip;
             OnToggle = onToggle;

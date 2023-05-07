@@ -20,6 +20,7 @@ namespace DRS.ModulesMod
     public static class Helpers
     {
         public static readonly Dictionary<VehicleType, List<TechType>> modulesRefrences = new Dictionary<VehicleType, List<TechType>>();
+        public static readonly Dictionary<VehicleType, List<Module>> moduleTree = new Dictionary<VehicleType, List<Module>>();
 
         public static string[] GeneralSteps = { "General" };
         public static string[] SeamothSteps = { "Seamoth" };
@@ -34,20 +35,32 @@ namespace DRS.ModulesMod
             General,
         }
 
-
-        public static void SetModuleType(VehicleType moduleType, TechType techType) 
+        public static void AddModule(Module module)
         {
-            if(!modulesRefrences[moduleType].Contains(techType))
-                modulesRefrences[moduleType].Add(techType);
+            if (!moduleTree[module.vehicleType].Contains(module))
+                moduleTree[module.vehicleType].Add(module);
         }
 
-
-        public static bool HasModule(Vehicle vehicle, TechType module)
+        public static Module GetModule(VehicleType vehicleType, TechType techType)
         {
-            if (vehicle.modules.GetCount(module) > 0) return true;
-            return false;
+            foreach (var module in moduleTree[vehicleType])
+                if (module.techType == techType) return module;
+            return default;
         }
 
+        // maybe change to PrefabInfo instead of TechType?
+        public static Module CreateModule(VehicleType vehicleType, TechType techType, Action OnEquip = null, Action OnUnequip = null, Action<bool> OnToggle = null)
+        {
+            Module module = new Module
+            {
+                techType = techType,
+                vehicleType = vehicleType,
+                OnEquip = OnEquip,
+                OnUnequip = OnUnequip,
+                OnToggle = OnToggle
+            };
+            return module;
+        }
 
         /// <summary>
         /// Gets a sprite from a <see cref="TechType"/>, or from the Assets folder
