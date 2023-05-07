@@ -20,5 +20,10 @@ namespace DRS.ModulesMod.Modules.All
 
             prefab.Register();
         }
+
+        static void OnEquip()
+        {
+            ModulesMod.logger.LogInfo("EngineOvercharge equipped.");
+        }
     }
 }

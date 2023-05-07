@@ -2,9 +2,6 @@
 using BepInEx.Logging;
 using BepInEx;
 using HarmonyLib;
-using Nautilus.Handlers;
-using Modules = DRS.ModulesMod.Modules;
-using System.Linq;
 
 namespace DRS.ModulesMod
 {
